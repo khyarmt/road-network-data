@@ -14,7 +14,7 @@ sub_regions = ['shikoku']
 download_folder = datetime.date.today().strftime('%Y-%m-%d')
 if not os.path.exists(download_folder):
     os.makedirs(download_folder)
-"""
+
 for sub_region in sub_regions:
     # Download Zip
     folder = f'{sub_region}-latest-free.shp.zip'
@@ -26,8 +26,10 @@ for sub_region in sub_regions:
         zf.extract('gis_osm_roads_free_1.shp', f'{download_folder}')
 
     os.rename(f'{download_folder}/gis_osm_roads_free_1.shp', f'{download_folder}/gis_osm_roads_free_1_{sub_region}.shp')
-"""
+
     # Change .shp to .geojson
-sub_region='shikoku'
-#subprocess.run(['sh', 'shp_to_json.sh', sub_region], stdout = subprocess.PIPE, shell = False)
-subprocess.call(['sh', 'shp_to_json.sh', download_folder, sub_region])
+    subprocess.run(['sh', 'shp2json.sh', download_folder, sub_region], stdout = subprocess.PIPE, shell = False)
+
+    # Deliete Unnecessary Files
+    os.remove(f'{download_folder}/{sub_region}-latest-free.shp.zip')
+    os.remove(f'{download_folder}/gis_osm_roads_free_1_{sub_region}.shp')
