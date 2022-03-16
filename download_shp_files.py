@@ -8,8 +8,7 @@ download_server = 'https://download.geofabrik.de'
 region = 'asia'
 country = 'japan'
 
-#sub_regions = ['hokkaido', 'tohoku', 'kanto', 'chubu', 'kansai', 'chugoku', 'shikoku', 'kyushu']
-sub_regions = ['shikoku']
+sub_regions = ['hokkaido', 'tohoku', 'kanto', 'chubu', 'kansai', 'chugoku', 'shikoku', 'kyushu']
 
 for sub_region in sub_regions:
     # Make Download Folder
@@ -31,4 +30,4 @@ for sub_region in sub_regions:
             os.rename(f'{download_folder}/gis_osm_roads_free_1.{extension}', f'{download_folder}/gis_osm_roads_free_1_{sub_region}.{extension}')
 
     # Deliete Unnecessary Files
-    #os.remove(f'{download_folder}/{zip_name}')
+    os.remove(f'{download_folder}/{zip_name}')

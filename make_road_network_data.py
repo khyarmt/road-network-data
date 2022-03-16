@@ -1,11 +1,7 @@
 import json
 
-def make_road_network_data(import_folder, sub_region):
-    geojson_open = open(f'{import_folder}/gis_osm_roads_free_1_{sub_region}.geojson', 'r')
-    geojson_load = json.load(geojson_open)
+geojson_open = open(f'{import_folder}/gis_osm_roads_free_1_{sub_region}.geojson', 'r')
+geojson_load = json.load(geojson_open)
 
-    road_list = geojson_load['features']
-    print(road_list[0]['geometry']['coordinates'])
-
-if __name__ == '__main__':
-    make_road_network_data()
+road_list = geojson_load['features']
+print(road_list[0]['geometry']['coordinates'])
