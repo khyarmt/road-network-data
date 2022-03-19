@@ -11,6 +11,8 @@ country = 'japan'
 sub_regions = ['hokkaido', 'tohoku', 'kanto', 'chubu', 'kansai', 'chugoku', 'shikoku', 'kyushu']
 
 for sub_region in sub_regions:
+    print(f'# Downloading OpenStreetMap Shape Data...... Region: {sub_region}')
+
     # Make Download Folder
     processing_date = datetime.date.today().strftime('%Y-%m-%d') # スクリプトを実行した日付でフォルダを作成し、この中にデータを格納していく
     if not os.path.exists(processing_date):
