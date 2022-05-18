@@ -1,7 +1,6 @@
 import datetime
 import urllib.request
 import zipfile
-import subprocess
 import os
 
 download_server = 'https://download.geofabrik.de'
@@ -14,13 +13,15 @@ for sub_region in sub_regions:
     print(f'# Downloading OpenStreetMap Shape Data...... Region: {sub_region}')
 
     # Make Download Folder
-    processing_date = datetime.date.today().strftime('%Y-%m-%d') # スクリプトを実行した日付でフォルダを作成し、この中にデータを格納していく
+    processing_date = datetime.date.today().strftime('%Y-%m-%d')
     if not os.path.exists(processing_date):
         os.makedirs(processing_date)
+        if not os.path.exists('shapefile'):
+            os.makedirs(f'{processing_date}/shapefile')
 
     # Download Zip
     zip_name = f'{sub_region}-latest-free.shp.zip'
-    download_folder = processing_date
+    download_folder = f'{processing_date}/shapefile'
     url = f'{download_server}/{region}/{country}/{zip_name}'
     urllib.request.urlretrieve(url, f'{download_folder}/{zip_name}')
 

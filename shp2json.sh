@@ -1,6 +1,8 @@
 #!/bin/sh
 
-folder=${1}
-sub_region=${2}
+processing_date=${1}
 
-shp2json ${folder}/gis_osm_roads_free_1_${sub_region}.shp -o ${folder}/gis_osm_roads_free_1_${sub_region}.geojson
+mkdir -p ${processing_date}/geojson
+for sub_region in "hokkaido" "tohoku" "kanto" "chubu" "kansai" "chugoku" "shikoku" "kyushu"; do
+    shp2json --encoding utf-8 ${processing_date}/shapefile/gis_osm_roads_free_1_${sub_region}.shp -o ${processing_date}/geojson/gis_osm_roads_free_1_${sub_region}.geojson
+done
